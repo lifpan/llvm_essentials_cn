@@ -1,0 +1,37 @@
+digraph "dag-combine1 input for test:" {
+	rankdir="BT";
+	label="dag-combine1 input for test:";
+
+	Node0x37cf1e0 [shape=record,shape=Mrecord,label="{EntryToken|0x37cf1e0|{<d0>ch}}"];
+	Node0x382a250 [shape=record,shape=Mrecord,label="{Register %vreg0|0x382a250|{<d0>i32}}"];
+	Node0x382a378 [shape=record,shape=Mrecord,label="{{<s0>0|<s1>1}|CopyFromReg [ORD=1]|0x382a378|{<d0>i32|<d1>ch}}"];
+	Node0x382a378:s0 -> Node0x37cf1e0:d0[color=blue,style=dashed];
+	Node0x382a378:s1 -> Node0x382a250:d0;
+	Node0x382a4a0 [shape=record,shape=Mrecord,label="{Register %vreg1|0x382a4a0|{<d0>i32}}"];
+	Node0x382a5c8 [shape=record,shape=Mrecord,label="{{<s0>0|<s1>1}|CopyFromReg [ORD=1]|0x382a5c8|{<d0>i32|<d1>ch}}"];
+	Node0x382a5c8:s0 -> Node0x37cf1e0:d0[color=blue,style=dashed];
+	Node0x382a5c8:s1 -> Node0x382a4a0:d0;
+	Node0x382a6f0 [shape=record,shape=Mrecord,label="{Register %vreg2|0x382a6f0|{<d0>i32}}"];
+	Node0x382a818 [shape=record,shape=Mrecord,label="{{<s0>0|<s1>1}|CopyFromReg [ORD=1]|0x382a818|{<d0>i32|<d1>ch}}"];
+	Node0x382a818:s0 -> Node0x37cf1e0:d0[color=blue,style=dashed];
+	Node0x382a818:s1 -> Node0x382a6f0:d0;
+	Node0x382a940 [shape=record,shape=Mrecord,label="{{<s0>0|<s1>1}|add [ORD=2]|0x382a940|{<d0>i32}}"];
+	Node0x382a940:s0 -> Node0x382a378:d0;
+	Node0x382a940:s1 -> Node0x382a5c8:d0;
+	Node0x382aa68 [shape=record,shape=Mrecord,label="{{<s0>0|<s1>1}|sdiv [ORD=3]|0x382aa68|{<d0>i32}}"];
+	Node0x382aa68:s0 -> Node0x382a940:d0;
+	Node0x382aa68:s1 -> Node0x382a818:d0;
+	Node0x382ab90 [shape=record,shape=Mrecord,label="{TargetConstant\<0\>|0x382ab90|{<d0>i16}}"];
+	Node0x382acb8 [shape=record,shape=Mrecord,label="{Register %EAX|0x382acb8|{<d0>i32}}"];
+	Node0x382ade0 [shape=record,shape=Mrecord,label="{{<s0>0|<s1>1|<s2>2}|CopyToReg [ORD=4]|0x382ade0|{<d0>ch|<d1>glue}}"];
+	Node0x382ade0:s0 -> Node0x37cf1e0:d0[color=blue,style=dashed];
+	Node0x382ade0:s1 -> Node0x382acb8:d0;
+	Node0x382ade0:s2 -> Node0x382aa68:d0;
+	Node0x382af08 [shape=record,shape=Mrecord,label="{{<s0>0|<s1>1|<s2>2|<s3>3}|X86ISD::RET_FLAG [ORD=4]|0x382af08|{<d0>ch}}"];
+	Node0x382af08:s0 -> Node0x382ade0:d0[color=blue,style=dashed];
+	Node0x382af08:s1 -> Node0x382ab90:d0;
+	Node0x382af08:s2 -> Node0x382acb8:d0;
+	Node0x382af08:s3 -> Node0x382ade0:d1[color=red,style=bold];
+	Node0x0[ plaintext=circle, label ="GraphRoot"];
+	Node0x0 -> Node0x382af08:d0[color=blue,style=dashed];
+}

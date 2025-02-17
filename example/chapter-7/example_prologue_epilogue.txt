@@ -1,0 +1,12 @@
+%p = alloca i32, align 4
+store i32 2, i32* %p
+%b = load i32* %p, align 4
+%c = add nsw i32 %a, %b
+
+
+
+sub sp, sp, #4 ; prologue
+movw r1, #2
+str r1, [sp]
+add r0, r0, #2
+add sp, sp, #4 ; epilogue
